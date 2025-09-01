@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Asjad Ali | 3D Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #232526 0%, #414345 100%);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 4vw;
+            background: rgba(34, 34, 34, 0.85);
+            box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #00c3ff;
+            text-shadow: 0 2px 8px #00c3ff44;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            position: relative;
+        }
+        nav ul li a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #00c3ff;
+            transition: width .3s;
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        nav ul li a:hover {
+            color: #00c3ff;
+        }
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 90vh;
+            position: relative;
+            text-align: center;
+            background: linear-gradient(120deg, #232526 60%, #00c3ff22 100%);
+            overflow: hidden;
+        }
+        .cube-container {
+            perspective: 1200px;
+            width: 320px;
+            height: 320px;
+            margin: 0 auto 2rem auto;
+            position: relative;
+        }
+        .cube {
+            width: 220px;
+            height: 220px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-style: preserve-3d;
+            transform: translate(-50%, -50%) rotateX(-20deg) rotateY(20deg);
+            animation: rotateCube 8s infinite linear;
+        }
+        @keyframes rotateCube {
+            0% { transform: translate(-50%, -50%) rotateX(-20deg) rotateY(20deg);}
+            100% { transform: translate(-50%, -50%) rotateX(340deg) rotateY(380deg);}
+        }
+        .cube-face {
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            background: rgba(0,195,255,0.85);
+            border: 2px solid #fff;
+            box-shadow: 0 8px 32px #00c3ff44;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #232526;
+            text-shadow: 0 2px 8px #fff4;
+            transition: background 0.3s;
+            backdrop-filter: blur(2px);
+        }
+        .cube-face:nth-child(1) { transform: rotateY(0deg) translateZ(110px);}
+        .cube-face:nth-child(2) { transform: rotateY(180deg) translateZ(110px);}
+        .cube-face:nth-child(3) { transform: rotateX(90deg) translateZ(110px);}
+        .cube-face:nth-child(4) { transform: rotateX(-90deg) translateZ(110px);}
+        .cube-face:nth-child(5) { transform: rotateY(90deg) translateZ(110px);}
+        .cube-face:nth-child(6) { transform: rotateY(-90deg) translateZ(110px);}
+        .hero-content {
+            margin-top: 2rem;
+            max-width: 600px;
+            background: rgba(34,34,34,0.7);
+            border-radius: 18px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px #00c3ff33;
+            backdrop-filter: blur(2px);
+        }
+        .hero-content h1 {
+            font-size: 2.8rem;
+            color: #00c3ff;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 16px #00c3ff44;
+        }
+        .hero-content h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1.2rem;
+            color: #fff;
+        }
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        section {
+            padding: 4rem 6vw;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            color: #00c3ff;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 16px #00c3ff44;
+            text-align: center;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .skill-card {
+            background: linear-gradient(135deg, #232526 60%, #00c3ff22 100%);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px #00c3ff22;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #fff;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #00c3ff44;
+        }
+        .skill-card:hover {
+            transform: translateY(-8px) scale(1.04);
+            box-shadow: 0 8px 32px #00c3ff44;
+        }
+        .projects-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .project-card {
+            background: linear-gradient(120deg, #232526 60%, #00c3ff22 100%);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px #00c3ff22;
+            padding: 1.5rem;
+            color: #fff;
+            border: 1px solid #00c3ff44;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.04);
+            box-shadow: 0 8px 32px #00c3ff44;
+        }
+        .contact-form {
+            background: rgba(34,34,34,0.7);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 24px #00c3ff22;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border: 1px solid #00c3ff44;
+            background: #232526;
+            color: #fff;
+            font-size: 1rem;
+            resize: none;
+        }
+        .contact-form button {
+            background: #00c3ff;
+            color: #232526;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #00c3ff44;
+            transition: background 0.2s;
+        }
+        .contact-form button:hover {
+            background: #0090c7;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #aaa;
+            background: rgba(34,34,34,0.85);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-top: 2rem;
+        }
+        @media (max-width: 700px) {
+            .cube-container { width: 220px; height: 220px;}
+            .cube { width: 140px; height: 140px;}
+            .cube-face { width: 140px; height: 140px; font-size: 1rem;}
+            .hero-content h1 { font-size: 2rem;}
+            section { padding: 2rem 2vw;}
+            .section-title { font-size: 1.5rem;}
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Asjad Ali</div>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <section class="hero" id="hero">
+        <div class="cube-container">
+            <div class="cube">
+                <div class="cube-face">WordPress<br>Developer</div>
+                <div class="cube-face">Graphics<br>Canva & APshop</div>
+                <div class="cube-face">C++<br>Fundamentals & Data Structures</div>
+                <div class="cube-face">Java<br>OOP</div>
+                <div class="cube-face">Python<br>AI & ML</div>
+                <div class="cube-face">Figma<br>UI/UX</div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1>Asjad Ali</h1>
+            <h2>BS Computer Science Student & WordPress Developer</h2>
+            <p>
+                Passionate about web development, graphics designing, and programming. Skilled in WordPress, Canva, APshop, MS Office, C++, Java, Python (AI/ML), and Figma for UI/UX. Currently learning React and .NET for mobile application development.
+            </p>
+        </div>
+    </section>
+    <section id="skills">
+        <div class="section-title">My Skills</div>
+        <div class="skills-grid">
+            <div class="skill-card">WordPress Development</div>
+            <div class="skill-card">Canva & APshop Graphics</div>
+            <div class="skill-card">MS Office Suite</div>
+            <div class="skill-card">C++ Fundamentals & Data Structures</div>
+            <div class="skill-card">Java OOP</div>
+            <div class="skill-card">Python AI & Machine Learning</div>
+            <div class="skill-card">Figma (UI/UX)</div>
+            <div class="skill-card">React (Learning)</div>
+            <div class="skill-card">.NET (Learning)</div>
+        </div>
+    </section>
+    <section id="projects">
+        <div class="section-title">Projects</div>
+        <div class="projects-list">
+            <div class="project-card">
+                <h3>WordPress Portfolio Website</h3>
+                <p>Designed and developed a personal portfolio using WordPress, showcasing skills and projects.</p>
+            </div>
+            <div class="project-card">
+                <h3>Canva Social Media Designs</h3>
+                <p>Created engaging graphics for social media campaigns using Canva and APshop.</p>
+            </div>
+            <div class="project-card">
+                <h3>C++ Data Structure Visualizer</h3>
+                <p>Built a simple tool to visualize data structures and algorithms in C++.</p>
+            </div>
+            <div class="project-card">
+                <h3>AI/ML Python Mini Projects</h3>
+                <p>Implemented basic machine learning models and AI experiments in Python.</p>
+            </div>
+            <div class="project-card">
+                <h3>UI/UX Mockups in Figma</h3>
+                <p>Designed modern app interfaces and prototypes using Figma.</p>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <div class="section-title">Contact Me</div>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+    <footer>
+        &copy; 2024 Asjad Ali. All rights reserved.
+    </footer>
+</body>
+</html>
